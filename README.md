@@ -23,3 +23,6 @@ const pendingPromises = require('./pendingPromises');
 
 // Using EnhancedPromise and pendingPromises to manage promises
 // ... (adding, removing, retrieving information about promises in a pending state)
+
+// Set EnhancedPromise as the global Promise
+global.Promise = EnhancedPromise;
