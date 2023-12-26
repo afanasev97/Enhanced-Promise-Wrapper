@@ -1,0 +1,20 @@
+{
+  "name": "enhanced-promise-wrapper",
+  "version": "1.0.0",
+  "description": "This repository contains modules that provide a wrapper over standard JavaScript promises to track and manage promises in a pending state.",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afanasev97/Enhanced-Promise-Wrapper.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/afanasev97/Enhanced-Promise-Wrapper/issues"
+  },
+  "homepage": "https://github.com/afanasev97/Enhanced-Promise-Wrapper#readme"
+}
