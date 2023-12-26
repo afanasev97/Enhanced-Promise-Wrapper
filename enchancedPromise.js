@@ -19,7 +19,15 @@ class EnhancedPromise extends Promise {
 		pendingPromises.add(id, this);
 		this.executor = executor;
 
-		Error.captureStackTrace(this, EnhancedPromise);
+		 // Измененный вывод стека вызова без информации об ошибке
+		const captureStackTrace = {};
+		Error.captureStackTrace(captureStackTrace, EnhancedPromise);
+		const { stack } = captureStackTrace;
+		const stackLines = stack.split('\n');
+		const filteredStack = stackLines
+			.filter(line => !line.includes('Error'));
+	
+		this.stack = ['', ...filteredStack].join('\n');
 	}
 }
 
