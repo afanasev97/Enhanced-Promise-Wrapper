@@ -2,17 +2,17 @@ class EnhancedPromise extends Promise {
 	constructor(executor) {
 		const id = Symbol();
 		const wrappedExecutor = (resolve, reject) => {
-		const wrappedResolve = () => {
-			pendingPromises.remove(id);
-			return resolve(...arguments);
+			const wrappedResolve = result => {
+				pendingPromises.remove(id);
+				return resolve(typeof result === "function" ? result() : result);
+			};
+			const wrappedReject = result => {
+				pendingPromises.remove(id);
+				return reject(typeof result === "function" ? result() : result);
+			};
+
+			return executor(wrappedResolve, wrappedReject);
 		};
-		const wrappedReject = () => {
-			pendingPromises.remove(id);
-			return reject(...arguments);
-		};
-		
-		return executor(wrappedResolve, wrappedReject);
-	};
 
 		super(wrappedExecutor);
 
@@ -52,6 +52,8 @@ const pendingPromises = {
 		}));
 	}
 };
+
+EnhancedPromise.pendingPromises = pendingPromises;
 
 module.exports = {
 	EnhancedPromise,
